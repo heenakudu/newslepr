@@ -1,0 +1,57 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="CompleteTestSuite">
+    <listeners>
+        <listener class-name="packageprt.testnglistenersImpl"/>
+    </listeners>
+    <!-- Parameters for parameterized tests -->
+    <parameter name="username" value="testUser123"/>
+
+    <!-- Running the suite setup class -->
+    <test name="SuiteConfigTests">
+        <classes>
+            <class name="testngexample.SuiteConfigTests"/>
+        </classes>
+    </test>
+    <!--    //its a gloabl key,applicatible in everything-->
+    <parameter name="URL" value="something.com"/>
+
+    <!-- Running individual test classes with specific methods and groups -->
+    <test name="TestClass1Tests">
+        <parameter name="val1" value="4"/>
+        <parameter name="val2" value="5"/>
+        <classes>
+            <class name="testngexample.TestClass1">
+                <methods>
+                    <include name="test1"/>
+                    <include name="Sum"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
+    <test name="TestClass2Tests">
+        <groups>
+            <run>
+                <!-- Only running tests in the "regression" group -->
+                <include name="regression"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="testngexample.TestClass2"/>
+        </classes>
+    </test>
+
+    <!-- Running data-driven tests -->
+    <test name="DataDrivenTests">
+        <groups>
+            <run>
+                <!-- Only running tests in the "data-driven" group -->
+                <include name="data-driven"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="testngexample.DataDrivenTests"/>
+        </classes>
+    </test>
+
+</suite>
